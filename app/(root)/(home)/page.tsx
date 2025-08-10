@@ -53,9 +53,11 @@ const Home = () => {
           {/* Time & Date */}
           <div className="flex flex-col gap-2 ml-4 font-sans">
             <h1 className="text-4xl font-bold lg:text-3xl">
-              {time} {getTimeEmoji()} 
-              <span className="text-slate-600 text-lg">Reload the page for updating clock</span>
+              {time} {getTimeEmoji()}
             </h1>
+            <h5 className="text-slate-600 text-lg">
+              Reload the page for updating clock
+            </h5>
             <p className="text-lg font-medium text-sky-1 lg:text-xl">{date}</p>
           </div>
         </div>
