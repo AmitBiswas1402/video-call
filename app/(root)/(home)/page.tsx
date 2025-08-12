@@ -11,9 +11,9 @@ const Home = () => {
   const hours = now.getHours();
 
   const getGreeting = () => {
-    if (hours < 12) return "Good morning ☀️";
-    if (hours < 18) return "Good afternoon 🌤️";
-    return "Good evening 🌙";
+    if (hours < 12) return "Good Morning ☀️,";
+    if (hours < 18) return "Good Afternoon 🌤️,";
+    return "Good Evening 🌙,";
   };
 
   const getTimeEmoji = () => {

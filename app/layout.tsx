@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import "@stream-io/video-react-sdk/dist/css/styles.css";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -28,9 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider
-    appearance={{
+      appearance={{
         baseTheme: dark,
-        variables: { colorPrimary: "#9f76ff" }
+        variables: { colorPrimary: "#9f76ff" },
       }}
     >
       <html lang="en" suppressHydrationWarning>
