@@ -22,6 +22,7 @@ import {
 import Loader from "./Loader";
 import { cn } from "@/lib/utils";
 import EndCallButton from "./EndCallButton";
+import CopyURL from "./CopyURL";
 
 type CallLayoutType = "grid" | "speaker-left" | "speaker-right";
 
@@ -64,7 +65,7 @@ const MeetingRoom = () => {
       </div>
       {/* video layout and call controls */}
       <div
-        className="fixed bottom-4 right-5 -translate-x-1/2 flex items-center justify-center gap-5 rounded-xl px-6 py-3 shadow-md bg-white/5 backdrop-blur-md"
+        className="fixed bottom-4 right-5 -translate-x-1/3 flex items-center justify-center gap-5 rounded-xl px-6 py-3 shadow-md bg-white/5 backdrop-blur-md"
       >
         <CallControls onLeave={() => router.push(`/`)} />
 
@@ -95,8 +96,12 @@ const MeetingRoom = () => {
             <Users size={20} className="text-white" />
           </div>
         </button>
+        <div>
+          <CopyURL />
+        </div>
         {!isPersonalRoom && <EndCallButton />}
       </div>
+
     </section>
   );
 };
