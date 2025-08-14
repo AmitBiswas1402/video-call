@@ -11,7 +11,6 @@ import {
 } from "@stream-io/video-react-sdk";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Users, LayoutList } from "lucide-react";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -52,9 +51,17 @@ const MeetingRoom = () => {
   return (
     <section className="relative h-screen w-full overflow-hidden pt-4 text-white">
       <div className="relative flex size-full items-center justify-center">
-        <div className="flex size-full max-w-screen items-center">
-          <CallLayout />
+        <div className="flex items-center justify-center h-screen w-screen bg-black">
+          <div
+            className={cn(
+              "bg-black flex items-center justify-center aspect-video transition-all duration-300 ease-in-out",
+              showParticipants ? "w-[80vw] h-[80vh]" : "w-[95vw] h-[95vh]"
+            )}
+          >
+            <CallLayout />
+          </div>
         </div>
+
         <div
           className={cn("h-[calc(100vh-86px)] hidden ml-2", {
             "show-block": showParticipants,
@@ -64,9 +71,7 @@ const MeetingRoom = () => {
         </div>
       </div>
       {/* video layout and call controls */}
-      <div
-        className="fixed bottom-4 right-5 -translate-x-1/3 flex items-center justify-center gap-5 rounded-xl px-6 py-3 shadow-md bg-white/5 backdrop-blur-md"
-      >
+      <div className="fixed bottom-0 flex w-full items-center justify-center gap-5 rounded-xl flex-wrap">
         <CallControls onLeave={() => router.push(`/`)} />
 
         <DropdownMenu>
@@ -101,7 +106,6 @@ const MeetingRoom = () => {
         </div>
         {!isPersonalRoom && <EndCallButton />}
       </div>
-
     </section>
   );
 };

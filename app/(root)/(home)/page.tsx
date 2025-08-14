@@ -11,16 +11,16 @@ const Home = () => {
   const hours = now.getHours();
 
   const getGreeting = () => {
-    if (hours < 12) return "Good Morning ☀️,";
-    if (hours < 18) return "Good Afternoon 🌤️,";
-    return "Good Evening 🌙,";
+    if (hours < 12) return "Good Morning 🌄,";
+    if (hours < 18) return "Good Afternoon 🌇,";
+    return "Good Evening 🌆,";
   };
 
   const getTimeEmoji = () => {
-    if (hours < 6) return "🌌";
+    if (hours < 6) return "🌅";
     if (hours < 12) return "🌞";
-    if (hours < 18) return "☀️";
-    return "🌆";
+    if (hours < 18) return "🌛";
+    return "🌃";
   };
 
   const time = now.toLocaleTimeString("en-US", {
@@ -62,7 +62,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
       <MeetingTypeList />
     </section>
   );
