@@ -6,7 +6,7 @@ import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "sonner";
 import { Textarea } from "./ui/textarea";
-import ReactDatePicker from 'react-datepicker';
+import ReactDatePicker from "react-datepicker";
 
 const MeetingTypeList = () => {
   const router = useRouter();
@@ -62,7 +62,7 @@ const MeetingTypeList = () => {
     }
   };
 
-  const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetails?.id}`
+  const meetingLink = `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetails?.id}`;
 
   return (
     <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -97,9 +97,9 @@ const MeetingTypeList = () => {
         handleClick={() => router.push("/recordings")}
       />
 
-{!callDetails ? (
+      {!callDetails ? (
         <MeetingModal
-          isOpen={meetingState === 'isScheduleMeeting'}
+          isOpen={meetingState === "isScheduleMeeting"}
           onClose={() => setMeetingState(undefined)}
           title="Create Meeting"
           handleClick={createMeeting}
@@ -133,14 +133,14 @@ const MeetingTypeList = () => {
         </MeetingModal>
       ) : (
         <MeetingModal
-          isOpen={meetingState === 'isScheduleMeeting'}
+          isOpen={meetingState === "isScheduleMeeting"}
           onClose={() => setMeetingState(undefined)}
           title="Meeting Created"
           handleClick={() => {
             navigator.clipboard.writeText(meetingLink);
-            toast.success('Link Copied');
+            toast.success("Link Copied");
           }}
-          image={'/icons/checked.svg'}
+          image={"/icons/checked.svg"}
           buttonIcon="/icons/copy.svg"
           className="text-center"
           buttonText="Copy Meeting Link"
