@@ -49,61 +49,60 @@ const MeetingRoom = () => {
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden pt-4 text-white">
-      <div className="relative flex size-full items-center justify-center">
-        <div className="flex items-center justify-center h-screen w-screen bg-black">
-          <div
-            className={cn(
-              "bg-black flex items-center justify-center aspect-video transition-all duration-300 ease-in-out",
-              showParticipants ? "w-[80vw] h-[80vh]" : "w-[95vw] h-[95vh]"
-            )}
-          >
-            <CallLayout />
-          </div>
+    <section className="relative h-screen w-full bg-black text-white flex flex-col">
+      {/* MAIN CALL AREA */}
+      <div className="flex flex-1 items-center justify-center overflow-hidden">
+        {/* Call Layout */}
+        <div
+          className={cn(
+            "bg-black flex items-center justify-center aspect-video rounded-xl shadow-lg transition-all duration-300 ease-in-out",
+            showParticipants ? "w-[80vw] h-[80vh]" : "w-[90vw] h-[90vh]"
+          )}
+        >
+          <CallLayout />
         </div>
 
-        <div
-          className={cn("h-[calc(100vh-86px)] hidden ml-2", {
-            "show-block": showParticipants,
-          })}
-        >
-          <CallParticipantsList onClose={() => setShowParticipants(false)} />
-        </div>
+        {/* PARTICIPANTS LIST (side panel) */}
+        {showParticipants && (
+          <div className="h-full w-[300px] ml-4 bg-[#111] border-l border-gray-800 overflow-y-auto rounded-lg">
+            <CallParticipantsList onClose={() => setShowParticipants(false)} />
+          </div>
+        )}
       </div>
-      {/* video layout and call controls */}
-      <div className="fixed bottom-0 flex w-full items-center justify-center gap-5 rounded-xl flex-wrap">
+
+      {/* CONTROLS BAR */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-4 rounded-2xl bg-black/50 backdrop-blur px-4 py-2 shadow-lg">
         <CallControls onLeave={() => router.push(`/`)} />
 
+        {/* Layout Switcher */}
         <DropdownMenu>
-          <div className="flex items-center">
-            <DropdownMenuTrigger className="cursor-pointer rounded-2xl bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]  ">
-              <LayoutList size={20} className="text-white" />
-            </DropdownMenuTrigger>
-          </div>
-          <DropdownMenuContent className="border-black bg-black text-white">
+          <DropdownMenuTrigger className="cursor-pointer rounded-xl bg-[#19232d] px-3 py-2 hover:bg-[#4c535b]">
+            <LayoutList size={20} />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="border border-gray-700 bg-[#1e1e1e] text-white">
             {["Grid", "Speaker-Left", "Speaker-Right"].map((item, index) => (
-              <div key={index}>
-                <DropdownMenuItem
-                  onClick={() =>
-                    setLayout(item.toLowerCase() as CallLayoutType)
-                  }
-                >
-                  {item}
-                </DropdownMenuItem>
-                <DropdownMenuSeparator className="border-dark-1" />
-              </div>
+              <DropdownMenuItem
+                key={index}
+                onClick={() => setLayout(item.toLowerCase() as CallLayoutType)}
+              >
+                {item}
+              </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
+
         <CallStatsButton />
-        <button onClick={() => setShowParticipants((prev) => !prev)}>
-          <div className=" cursor-pointer rounded-2xl bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]  ">
-            <Users size={20} className="text-white" />
-          </div>
+
+        {/* Participants Button */}
+        <button
+          onClick={() => setShowParticipants((prev) => !prev)}
+          className="cursor-pointer rounded-full bg-[#19232d] px-3 py-2 hover:bg-[#4c535b] overflow-hidden"
+        >
+          <Users size={20} />
         </button>
-        <div>
-          <CopyURL />
-        </div>
+
+        <CopyURL />
+
         {!isPersonalRoom && <EndCallButton />}
       </div>
     </section>

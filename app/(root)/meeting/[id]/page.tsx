@@ -42,7 +42,7 @@ export default function MeetingPage({ params }: { params: Promise<{ id: string }
       <StreamCall call={call}>
         <StreamTheme>
           {!isSetupComplete ? (
-            <MeetingSetup setIsSetupComplete={setIsSetupComplete} />
+            <MeetingSetup onSetupComplete={() => setIsSetupComplete(true)} />
           ) : (
             <MeetingRoom />
           )}

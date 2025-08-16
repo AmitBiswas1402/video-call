@@ -11,16 +11,19 @@ const Home = () => {
   const hours = now.getHours();
 
   const getGreeting = () => {
+    if (hours >= 20 || hours < 3) return "Good Night 🌙,";
     if (hours < 12) return "Good Morning 🌄,";
-    if (hours < 18) return "Good Afternoon 🌇,";
+    if (hours < 18) return "Good Afternoon 🌤️,";
     return "Good Evening 🌆,";
   };
 
   const getTimeEmoji = () => {
-    if (hours < 6) return "🌅";
-    if (hours < 12) return "🌞";
-    if (hours < 18) return "🌛";
-    return "🌃";
+    const hours = new Date().getHours(); // local time hours (0–23)
+
+    if (hours >= 5 && hours < 12) return "🌞"; // Morning
+    if (hours >= 12 && hours < 17) return "☀️"; // Afternoon
+    if (hours >= 17 && hours < 20) return "🌛"; // Evening
+    return "🌙"; // Night
   };
 
   const time = now.toLocaleTimeString("en-US", {
