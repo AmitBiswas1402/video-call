@@ -128,7 +128,7 @@ const MeetingTypeList = () => {
               timeIntervals={15}
               timeCaption="time"
               dateFormat="MMMM d, yyyy h:mm aa"
-              className="w-full rounded bg-dark-3 p-2 focus:outline-none"
+              className="w-full rounded bg-[0b0b0b] p-2 focus:outline-none"
             />
           </div>
         </MeetingModal>
